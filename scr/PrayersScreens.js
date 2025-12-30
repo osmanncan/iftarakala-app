@@ -141,22 +141,22 @@ Rabbim! İşimi hayırla tamamına erdir.`
 ];
 
 const PrayersScreens = () => {
-return (
-<ScrollView style={styles.pageContainer} contentContainerStyle={{ paddingBottom: 40 }}>
-<Text style={styles.pageTitle}>Dualar & Sureler</Text>
-{DUAS.map((dua) => (
-<View key={dua.id} style={styles.card}>
-<Text style={styles.cardTitle}>{dua.title}</Text>
-<View style={styles.arabicContainer}>
-<Text style={styles.arabicText}>{dua.arabic}</Text>
-</View>
-<View style={styles.turkishContainer}>
-<Text style={styles.turkishText}>{dua.turkish}</Text>
-</View>
-</View>
-))}
-</ScrollView>
-)
+  return (
+    <ScrollView style={styles.pageContainer} contentContainerStyle={{ paddingBottom: 40 }}>
+      <Text style={styles.pageTitle}>Dualar & Sureler</Text>
+      {DUAS.map((dua) => (
+        <View key={dua.id} style={styles.card}>
+          <Text style={styles.cardTitle}>{dua.title}</Text>
+          <View style={styles.arabicContainer}>
+            <Text style={styles.arabicText}>{dua.arabic}</Text>
+          </View>
+          <View style={styles.turkishContainer}>
+            <Text style={styles.turkishText}>{dua.turkish}</Text>
+          </View>
+        </View>
+      ))}
+    </ScrollView>
+  )
 }
 
 export default PrayersScreens
