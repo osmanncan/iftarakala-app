@@ -3,16 +3,16 @@ import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 
 const Gunler = [
-  { id: 1, ad: "Regaip Kandili", tarih: "22 Ocak 2026, Perşembe" },
-  { id: 2, ad: "Miraç Kandili", tarih: "15 Şubat 2026, Pazar" },
-  { id: 3, ad: "Berat Kandili", tarih: "3 Mart 2026, Salı" },
-  { id: 4, ad: "Ramazan Başlangıcı", tarih: "19 Mart 2026, Perşembe" },
-  { id: 5, ad: "Kadir Gecesi", tarih: "13 Nisan 2026, Pazartesi" },
-  { id: 6, ad: "Ramazan Bayramı", tarih: "18 Nisan 2026, Cumartesi" },
-  { id: 7, ad: "Kurban Bayramı", tarih: "25 Haziran 2026, Perşembe" },
-  { id: 8, ad: "Hicri Yılbaşı", tarih: "16 Temmuz 2026, Perşembe" },
-  { id: 9, ad: "Aşure Günü", tarih: "25 Temmuz 2026, Cumartesi" },
-  { id: 10, ad: "Mevlid Kandili", tarih: "24 Eylül 2026, Perşembe" },
+  { id: 1, ad: "Regaib Kandili", tarih: "10 Aralık 2026, Perşembe" },
+  { id: 2, ad: "Miraç Kandili", tarih: "15 Ocak 2026, Perşembe" },
+  { id: 3, ad: "Berat Kandili", tarih: "2 Şubat 2026, Pazartesi" },
+  { id: 4, ad: "Ramazan Başlangıcı", tarih: "19 Şubat 2026, Perşembe" },
+  { id: 5, ad: "Kadir Gecesi", tarih: "16 Mart 2026, Pazartesi" },
+  { id: 6, ad: "Ramazan Bayramı", tarih: "20 Mart 2026, Cuma (1. Gün) — 22 Mart 2026, Pazar (3. Gün)" },
+  { id: 7, ad: "Kurban Bayramı", tarih: "27 Mayıs 2026, Çarşamba (1. Gün) — 30 Mayıs 2026, Cumartesi (4. Gün)" },
+  { id: 8, ad: "Hicri Yılbaşı", tarih: "16 Haziran 2026, Salı" },
+  { id: 9, ad: "Aşure Günü", tarih: "25 Haziran 2026, Perşembe" },
+  { id: 10, ad: "Mevlid Kandili", tarih: "24 Ağustos 2026, Pazartesi" },
 ];
 
 const İslamDays = () => {
