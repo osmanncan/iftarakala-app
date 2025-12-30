@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   scrollView: {
-    marginBottom: 20,
+    marginBottom: 0,
   },
   card: {
     backgroundColor: '#1E293B', 
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#334155',
     paddingBottom: 5,
-    marginBottom: 10,
+    marginBottom: 3,
   },
   dateText: {
     color: 'white',
@@ -123,11 +123,12 @@ const styles = StyleSheet.create({
   timesContainer: {
     flexDirection: 'row', 
     justifyContent: 'space-between', 
-    flexWrap: 'wrap', 
+    flexWrap: 'wrap',
+    gap: 1,
   },
   timeBox: {
     alignItems: 'center', 
-    padding: 2,
+    padding: 0,
     minWidth: 45, 
   },
   timeLabel: {

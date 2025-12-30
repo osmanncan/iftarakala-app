@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, StatusBar, Modal, ActivityIndicator } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, StatusBar, Modal, ActivityIndicator, Animated, Easing } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -21,6 +21,9 @@ export default function HomeScreens() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [notification, setNotification] = useState(null);
   
+  // Animasyon
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  
   // Namaz Vakitleri State'leri
   const [prayerTimes, setPrayerTimes] = useState(null);
   const [monthlySchedule, setMonthlySchedule] = useState([]);
@@ -35,6 +38,19 @@ export default function HomeScreens() {
     setTimeout(() => setNotification(null), duration);
   };
 
+  // Fade animasyonu - activeTab değişince
+  useEffect(() => {
+    fadeAnim.setValue(0);
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 300,
+      easing: Easing.ease,
+      useNativeDriver: true,
+    }).start();
+  }, [activeTab]);
+
+  // Tab indicator animasyonu
+  const tabOrder = ['home', 'calendar', 'gunler', 'zikir', 'dua', 'qa'];
   // Şehir yükleme - Uygulama başladığında çalışır
   useEffect(() => {
     loadCity();
@@ -310,14 +326,14 @@ export default function HomeScreens() {
       </Modal>
 
       {/* Ana İçerik */}
-      <View style={styles.content}>
+      <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
         {activeTab === 'home' && renderHome()}
         {activeTab === 'calendar' && <Calendar loading={loading} monthlySchedule={monthlySchedule} />}
         {activeTab === 'dua' && <PrayersScreens />}
         {activeTab === 'qa' && <Questions />}
         {activeTab === 'zikir' && <Zikir />}
         {activeTab === 'gunler' && <İslamDays />}
-      </View>
+      </Animated.View>
 
       {/* Alt Menü */}
       <View style={[styles.tabBar, { paddingBottom: Math.max(insets.bottom, 8) }]}>
@@ -434,7 +450,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#1E293B', 
     borderTopWidth: 1, 
     borderTopColor: '#334155',
-    paddingTop: 8,
+    paddingTop: 0,
+    position: 'relative',
   },
   tabItem: { flex: 1, alignItems: 'center', paddingVertical: 8 },
   tabText: { fontSize: 10, color: '#94A3B8', marginTop: 4 },
