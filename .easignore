@@ -1,0 +1,8 @@
+# Ensure EAS build uploads do not include machine-specific or generated Android artifacts
+android/local.properties
+android/**/build/
+android/.gradle/
+.gradle/
+
+# Keep dependencies out of upload (EAS installs them)
+node_modules/
