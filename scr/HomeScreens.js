@@ -9,7 +9,7 @@ import Calendar from './Calendar';
 import PrayersScreens from './PrayersScreens';
 import Questions from './Questions';
 import Zikir from './Zikir';
-import İslamDays from './İslamDays';
+import IslamDays from './IslamDays';
 import { CITIES } from './constants';
 
 export default function HomeScreens() {
@@ -332,7 +332,7 @@ export default function HomeScreens() {
         {activeTab === 'dua' && <PrayersScreens />}
         {activeTab === 'qa' && <Questions />}
         {activeTab === 'zikir' && <Zikir />}
-        {activeTab === 'gunler' && <İslamDays />}
+        {activeTab === 'gunler' && <IslamDays />}
       </Animated.View>
 
       {/* Alt Menü */}
