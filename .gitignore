@@ -42,3 +42,6 @@ yarn-error.*
 
 # generated native folders
 /ios
+
+# Private files - do not push to GitHub
+scr/HomeScreens.js
