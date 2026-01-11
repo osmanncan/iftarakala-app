@@ -47,4 +47,4 @@ yarn-error.*
 /ios
 
 # Private files - do not push to GitHub
-scr/HomeScreens.js
+src/HomeScreens.js

@@ -150,7 +150,7 @@ iftarakala-app/
 ├── 🔧 eas.json                     # EAS Build yapılandırması
 ├── 📝 tsconfig.json                # TypeScript yapılandırması
 │
-├── 📂 scr/                         # Kaynak kod dosyaları
+├── 📂 src/                         # Kaynak kod dosyaları
 │   ├── HomeScreens.js             # 🏠 Ana ekran ve alt navigasyon
 │   ├── SplashScreen.js            # 🌟 Açılış/yükleme ekranı
 │   ├── PrayersScreens.js          # 🕌 Namaz vakitleri ekranı
@@ -189,11 +189,11 @@ iftarakala-app/
 | Dosya/Klasör | Açıklama |
 |-------------|----------|
 | `App.js` | Ana uygulama bileşeni, navigation container ve route yapılandırması |
-| `scr/HomeScreens.js` | Alt navigasyon ve ana ekran yönetimi |
-| `scr/PrayersScreens.js` | Namaz vakitlerini API'den çekip gösteren ekran |
-| `scr/Calendar.js` | Ramazan takvimi ve günlük iftar/sahur saatleri |
-| `scr/Zikir.js` | İnteraktif dijital tesbih ve zikir sayacı |
-| `scr/constants.js` | API endpoint'leri ve sabit değerler |
+| `src/HomeScreens.js` | Alt navigasyon ve ana ekran yönetimi |
+| `src/PrayersScreens.js` | Namaz vakitlerini API'den çekip gösteren ekran |
+| `src/Calendar.js` | Ramazan takvimi ve günlük iftar/sahur saatleri |
+| `src/Zikir.js` | İnteraktif dijital tesbih ve zikir sayacı |
+| `src/constants.js` | API endpoint'leri ve sabit değerler |
 | `android/` | Android platform spesifik native kodlar |
 | `assets/` | İkonlar, görseller ve splash screen |
 
@@ -397,7 +397,7 @@ npm run lint
 
 1. **Yeni Ekran Eklemek:**
 ```javascript
-// scr/YeniEkran.js dosyası oluştur
+// src/YeniEkran.js dosyası oluştur
 import React from 'react';
 import { View, Text } from 'react-native';
 
@@ -413,7 +413,7 @@ export default function YeniEkran() {
 2. **Navigation'a Eklemek:**
 ```javascript
 // App.js içinde
-import YeniEkran from './scr/YeniEkran';
+import YeniEkran from './src/YeniEkran';
 
 <Stack.Screen name="YeniEkran" component={YeniEkran} />
 ```
