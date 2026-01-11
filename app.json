@@ -37,6 +37,9 @@
       "favicon": "./assets/favicon.png"
     },
     "owner": "ossmancan",
+    "cli": {
+      "appVersionSource": "remote"
+    },
     "extra": {
       "eas": {
         "projectId": "91885b65-22d8-4466-8a5a-8a243529bd59"
