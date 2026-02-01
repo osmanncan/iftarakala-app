@@ -31,8 +31,8 @@ KESİN KURALLAR VE SINIRLAR (GÜVENLİK PROTOKOLÜ):
 
 Eğer kullanıcı senin alanın dışına çıkan (örneğin futbol, teknoloji, matematik ödevi) bir soru sorarsa: "Ben sadece Ramazan ve İslami konular hakkında sohbet etmek için tasarlandım, ancak dualarınızın kabulünü dilerim." diyerek nazikçe konuyu kapat.`;
 
-// Groq API
-const GROQ_API_KEY = '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';
+// Groq API - Key is stored in .env file for security
+const GROQ_API_KEY = process.env.EXPO_PUBLIC_GROQ_API_KEY;
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 const Assistant = () => {
