@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Vibration, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import RatingPrompt, { checkShouldShowRating } from './RatingPrompt';
 
 const ZikirmatikScreen = () => {
   const [count, setCount] = useState(0);
+  const [showRating, setShowRating] = useState(false);
+  const [ratingMessage, setRatingMessage] = useState("Hayırlı zikirler! 🌙");
 
   useEffect(() => {
     loadCount();
@@ -33,9 +36,33 @@ const ZikirmatikScreen = () => {
     }
   };
 
+  // Önemli zikir sayılarında rating prompt göster
+  const checkAndShowRating = async (newCount) => {
+    // 33, 99 veya 100'ün katlarında kontrol et
+    const specialNumbers = [33, 99];
+    const isSpecialNumber = specialNumbers.includes(newCount) || (newCount > 0 && newCount % 100 === 0);
+    
+    if (isSpecialNumber) {
+      const shouldShow = await checkShouldShowRating();
+      if (shouldShow) {
+        // Sayıya göre özel mesaj
+        if (newCount === 33) {
+          setRatingMessage("Maşallah! 33 zikir tamamladınız 🌙");
+        } else if (newCount === 99) {
+          setRatingMessage("Allah kabul etsin! 99 zikir 📿");
+        } else {
+          setRatingMessage(`Hayırlı olsun! ${newCount} zikir 🌟`);
+        }
+        setShowRating(true);
+      }
+    }
+  };
+
   const increment = () => {
-    setCount(prevCount => prevCount + 1);
+    const newCount = count + 1;
+    setCount(newCount);
     Vibration.vibrate(50);
+    checkAndShowRating(newCount);
   };
 
   const decrement = () => {
@@ -67,6 +94,13 @@ const ZikirmatikScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
+
+      {/* Rating Prompt */}
+      <RatingPrompt 
+        visible={showRating} 
+        onClose={() => setShowRating(false)}
+        message={ratingMessage}
+      />
     </View>
   );
 };
