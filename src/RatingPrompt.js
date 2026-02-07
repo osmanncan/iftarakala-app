@@ -7,27 +7,51 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const RATING_STORAGE_KEY = 'rating_prompt_status';
 const APP_USAGE_COUNT_KEY = 'app_usage_count';
 
+// Hangi açılışlarda rating gösterilecek (session milestone'ları)
+const SESSION_MILESTONES = [5, 15, 30, 60, 100];
+
 // Rating durumlarını kontrol etmek için yardımcı fonksiyonlar
 export const checkShouldShowRating = async () => {
   try {
     const status = await AsyncStorage.getItem(RATING_STORAGE_KEY);
     if (status === 'never_show') return false;
     
-    // Daha önce değerlendirdiyse veya "daha sonra" dediyse
+    // Daha önce değerlendirdiyse
     if (status === 'rated') return false;
     
-    // "Daha sonra" dediyse, en az 3 gün bekle
+    // "Daha sonra" dediyse, en az 7 gün bekle
     if (status) {
       const lastPrompt = JSON.parse(status);
       if (lastPrompt.action === 'later') {
         const daysSince = (Date.now() - lastPrompt.timestamp) / (1000 * 60 * 60 * 24);
-        if (daysSince < 3) return false;
+        if (daysSince < 7) return false;
       }
     }
     
     return true;
   } catch {
     return true;
+  }
+};
+
+// Uygulama açılış sayısını artır ve milestone'a ulaşıldıysa true döndür
+export const incrementUsageAndCheckMilestone = async () => {
+  try {
+    const count = await AsyncStorage.getItem(APP_USAGE_COUNT_KEY);
+    const newCount = (parseInt(count) || 0) + 1;
+    await AsyncStorage.setItem(APP_USAGE_COUNT_KEY, newCount.toString());
+    
+    // Milestone'a ulaşıldı mı kontrol et
+    const isMilestone = SESSION_MILESTONES.includes(newCount);
+    
+    if (isMilestone) {
+      const shouldShow = await checkShouldShowRating();
+      return { count: newCount, shouldShowRating: shouldShow };
+    }
+    
+    return { count: newCount, shouldShowRating: false };
+  } catch {
+    return { count: 0, shouldShowRating: false };
   }
 };
 

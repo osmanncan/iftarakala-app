@@ -49,3 +49,6 @@ yarn-error.*
 
 # Private files - do not push to GitHub
 src/HomeScreens.js
+
+# Private files - do not push to GitHub
+src/HomeScreens.js
