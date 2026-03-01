@@ -2,7 +2,7 @@
   "expo": {
     "name": "iftarakala: imsakiye",
     "slug": "iftarakala-ramazan",
-    "version": "1.0.5",
+    "version": "1.0.7",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -26,7 +26,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.osmancan.iftarakala",
-      "versionCode": 5,
+      "versionCode": 7,
       "edgeToEdgeEnabled": true,
       "permissions": [
         "android.permission.ACCESS_COARSE_LOCATION",
@@ -46,7 +46,14 @@
       }
     },
     "plugins": [
-      "expo-font"
+      "expo-font",
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-9012359046048383~1428847609",
+          "iosAppId": "ca-app-pub-9012359046048383~1428847609"
+        }
+      ]
     ]
   }
 }
