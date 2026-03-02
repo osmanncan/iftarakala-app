@@ -1,5 +1,8 @@
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import React from 'react'
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads'
+
+const AD_UNIT_ID = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9012359046048383/4175236348';
 
 
 const DUAS = [
@@ -144,16 +147,30 @@ const PrayersScreens = () => {
   return (
     <ScrollView style={styles.pageContainer} contentContainerStyle={{ paddingBottom: 40 }}>
       <Text style={styles.pageTitle}>Dualar & Sureler</Text>
-      {DUAS.map((dua) => (
-        <View key={dua.id} style={styles.card}>
-          <Text style={styles.cardTitle}>{dua.title}</Text>
-          <View style={styles.arabicContainer}>
-            <Text style={styles.arabicText}>{dua.arabic}</Text>
+      {DUAS.map((dua, index) => (
+        <React.Fragment key={dua.id}>
+          {/* Her 5 duada bir reklam göster */}
+          {index > 0 && index % 5 === 0 && (
+            <View style={styles.inlineAd}>
+              <BannerAd
+                unitId={AD_UNIT_ID}
+                size={BannerAdSize.MEDIUM_RECTANGLE}
+                requestOptions={{
+                  requestNonPersonalizedAdsOnly: true,
+                }}
+              />
+            </View>
+          )}
+          <View style={styles.card}>
+            <Text style={styles.cardTitle}>{dua.title}</Text>
+            <View style={styles.arabicContainer}>
+              <Text style={styles.arabicText}>{dua.arabic}</Text>
+            </View>
+            <View style={styles.turkishContainer}>
+              <Text style={styles.turkishText}>{dua.turkish}</Text>
+            </View>
           </View>
-          <View style={styles.turkishContainer}>
-            <Text style={styles.turkishText}>{dua.turkish}</Text>
-          </View>
-        </View>
+        </React.Fragment>
       ))}
     </ScrollView>
   )
@@ -185,5 +202,14 @@ const styles = StyleSheet.create({
   arabicText: { color: '#F8FAFC', fontSize: 21, lineHeight: 34, textAlign: 'right', writingDirection: 'rtl' },
 
   turkishContainer: { backgroundColor: '#1E293B', padding: 12, borderRadius: 12 },
-  turkishText: { color: '#CBD5E1', fontSize: 15, lineHeight: 24 }
+  turkishText: { color: '#CBD5E1', fontSize: 15, lineHeight: 24 },
+
+  inlineAd: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 16,
+    backgroundColor: '#1E293B',
+    padding: 10,
+    borderRadius: 16,
+  }
 });
